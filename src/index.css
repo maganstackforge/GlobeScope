@@ -1,14 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
 @import 'tailwindcss';
 * {
   box-sizing: border-box;
 }
+body {
+  font-family: 'Nunito', sans-serif;
+}
 :root {
   /* Premium Soft Light Theme (Aankhon ke liye ekdum comfortable) */
-  --background-color: #f8fafc; /* Clean Off-White (Slate-50) */
+  --background-color: #f9f8f2; /* Clean Off-White (Slate-50) */
   --background-gradient-start: #f1f5f9; /* Soft Soft Greyish-Blue (Slate-100) */
   --background-gradient-end: #e2e8f0; /* Muted Subtle Tint (Slate-200) */
-  --elements-color: #ffffff; /* Cards aur Header ke liye pure white (taaki alag se float hote hue dikhein) */
-  --text-color: #0f172a; /* Deep Navy Charcoal (Slate-900) - Pure black se behtar hota hai readable-wise */
+  --elements-color: #fafcf5; /* Cards aur Header ke liye pure white (taaki alag se float hote hue dikhein) */
+  --text-color: #535453; /* Deep Navy Charcoal (Slate-900) - Pure black se behtar hota hai readable-wise */
 }
 
 /* Dark Theme */
@@ -17,7 +21,7 @@
   --background-gradient-start: #050816;
   --background-gradient-end: #0c112b; /* Gradient match karne ke liye thoda sa light navy tint */
   --elements-color: #0c112b; /* card / header ke liye background se thoda alag color */
-  --text-color: hsl(0, 0%, 100%); /* white text */
+  --text-color: #c7ccb5; /* white text */
 }
 
 /* Shimmer card colors */
@@ -35,7 +39,7 @@ footer {
 }
 main.dark {
   --background-color: #050816;
-  --text-color: white;
+  --text-color: #c7ccb5;
   --elements-color: #0b1120;
 }
 /* ✅ Sahi Tarika: Jab parent (.dark) ho, tab andar ke header aur footer ka rang badlo */

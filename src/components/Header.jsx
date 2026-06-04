@@ -3,11 +3,13 @@ export default function Header() {
   const { isDark, setIsDark } = useTheme();
 
   return (
-    <header className={` ${isDark ? 'dark' : ''} sticky top-0 z-10 mx-auto w-full max-w-7xl p-2 shadow-lg`}>
-      <div className='flex w-full max-w-7xl items-center justify-between'>
-        <h2 className='w-1/2 text-2xl font-bold'>
+    <header
+      className={`w-max-7xl container mx-auto w-full ${isDark ? 'dark' : ''} sticky top-0 z-10 p-2 shadow-lg`}
+    >
+      <div className='mx-auto flex w-full justify-between'>
+        <h2 className='text-xl font-bold sm:text-2xl'>
           <a href='/' className='flex items-center gap-2'>
-            <img src='/GlobeScope.webp' alt='GlobScope logo' className='h-16 w-16 rounded-4xl' />
+            <img src='/GlobeScope.webp' alt='GlobScope logo' className='w-12 rounded-4xl' />
             Globe Scope
           </a>
         </h2>

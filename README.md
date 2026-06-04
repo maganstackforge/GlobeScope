@@ -2,6 +2,13 @@
 
 A modern and responsive country explorer application built with **React.js**, **Vite**, and **Tailwind CSS**. The application fetches data from the REST Countries API and allows users to search, filter, and explore detailed information about countries around the world.
 
+![React](https://img.shields.io/badge/React-v19-blue)
+![Vite](https://img.shields.io/badge/Vite-v7-purple)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-06B6D4)
+![React Router](https://img.shields.io/badge/React_Router-v7-red)
+![Vitest](https://img.shields.io/badge/Vitest-v3-green)
+![Responsive](https://img.shields.io/badge/Responsive-Yes-success)
+
 ## 🔗 Live Demo & Links
 
 - **Live Site:** https://globescope.netlify.app/
@@ -69,7 +76,17 @@ The project focuses on modern React development practices, reusable components, 
 
 ### API
 
-- REST Countries API
+The application uses the REST Countries API to fetch country information, including:
+
+- Country Name
+- Capital
+- Population
+- Region
+- Subregion
+- Languages
+- Currencies
+- Border Countries
+- Flags
 
 ### Testing & Code Quality
 
@@ -214,6 +231,7 @@ Frontend Developer Intern @ Namrata Universal
 - MCA Graduate
 - React.js Developer
 - JavaScript Enthusiast
+- Passionate about building responsive and user-friendly web applications
 - Currently Learning Node.js
 
 ---
