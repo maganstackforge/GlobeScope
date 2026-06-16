@@ -9,7 +9,16 @@ export default function Header() {
       <div className='mx-auto flex w-full justify-between'>
         <h2 className='text-xl font-bold sm:text-2xl'>
           <a href='/' className='flex items-center gap-2'>
-            <img src='/GlobeScope.webp' alt='GlobScope logo' className='w-12 rounded-4xl' />
+            <img
+              src='/GlobeScope.webp'
+              height='48'
+              width='48'
+              alt='GlobScope logo'
+              fetchPriority='high'
+              loading='eager'
+              decoding='async'
+              className='h-12 w-12 rounded-full object-contain'
+            />
             Globe Scope
           </a>
         </h2>

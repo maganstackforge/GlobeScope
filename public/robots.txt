@@ -1,0 +1,6 @@
+# Allow all search engines to crawl the website
+User-agent: *
+Allow: /
+
+# Sitemap configuration for your live URL
+Sitemap: https://globescope.netlify.app/sitemap.xml

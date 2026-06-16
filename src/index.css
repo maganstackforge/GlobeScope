@@ -1,62 +1,116 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
 @import 'tailwindcss';
+
 * {
   box-sizing: border-box;
 }
-body {
-  font-family: 'Nunito', sans-serif;
-}
-:root {
-  /* Premium Soft Light Theme (Aankhon ke liye ekdum comfortable) */
-  --background-color: #f9f8f2; /* Clean Off-White (Slate-50) */
-  --background-gradient-start: #f1f5f9; /* Soft Soft Greyish-Blue (Slate-100) */
-  --background-gradient-end: #e2e8f0; /* Muted Subtle Tint (Slate-200) */
-  --elements-color: #fafcf5; /* Cards aur Header ke liye pure white (taaki alag se float hote hue dikhein) */
-  --text-color: #535453; /* Deep Navy Charcoal (Slate-900) - Pure black se behtar hota hai readable-wise */
-}
 
-/* Dark Theme */
-.dark {
-  --background-color: #050816; /* main background */
-  --background-gradient-start: #050816;
-  --background-gradient-end: #0c112b; /* Gradient match karne ke liye thoda sa light navy tint */
-  --elements-color: #0c112b; /* card / header ke liye background se thoda alag color */
-  --text-color: #c7ccb5; /* white text */
-}
+/* =========================
+   Fonts
+========================= */
 
-/* Shimmer card colors */
-main .shimmer-card {
-  --shimmer-color: hsl(0, 0%, 78%);
-}
-main.dark .shimmer-card {
-  --shimmer-color: hsl(208, 21%, 34%);
-}
-main,
-header,
-footer {
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-main.dark {
-  --background-color: #050816;
-  --text-color: #c7ccb5;
-  --elements-color: #0b1120;
-}
-/* ✅ Sahi Tarika: Jab parent (.dark) ho, tab andar ke header aur footer ka rang badlo */
-.dark header,
-.dark footer {
-  --background-color: #0b1120;
-  --text-color: #ffffff;
-}
 @font-face {
   font-family: 'Nunito';
-  src: url('/fonts/XRXV3I6Li01BKofINeaB.woff2') format('woff2');
+  src: url('/fonts/Nunito-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    font-family: 'Nunito', sans-serif;
+  }
+}
+
+body {
+  @apply m-0 p-0;
+}
+
+/* =========================
+   Light Theme
+========================= */
+
+:root {
+  --background-color: #f7fafc;
+  --background-gradient-start: #eef4f7;
+  --background-gradient-end: #e4ecf2;
+
+  --elements-color: #ffffff;
+
+  --header-footer-color: #f1f5f9;
+
+  --text-color: #1e293b;
+
+  --border-color: #dbe4ea;
+  --hover-color: #f1f5f9;
+  --shadow-color: rgba(15, 23, 42, 0.08);
+}
+
+/* =========================
+   Dark Theme
+========================= */
+
+.dark {
+  --background-color: #050816;
+
+  --background-gradient-start: #050816;
+  --background-gradient-end: #0c112b;
+
+  /* Cards */
+  --elements-color: #13203b;
+
+  /* Header/Footer */
+  --header-footer-color: #0b1324;
+
+  /* Text */
+  --text-color: #e2e8f0;
+
+  --border-color: #243b63;
+  --shadow-color: rgba(0, 0, 0, 0.35);
+}
+
+/* =========================
+   Shimmer Colors
+========================= */
+
+main .shimmer-card {
+  --shimmer-color: hsl(0, 0%, 78%);
+}
+
+main.dark .shimmer-card {
+  --shimmer-color: hsl(208, 21%, 34%);
+}
+
+/* =========================
+   Layout Colors
+========================= */
+
+header,
+footer {
+  background-color: var(--header-footer-color);
+  color: var(--text-color);
+}
+
 main {
+  background-color: var(--background-color);
+  color: var(--text-color);
+
   padding: 24px;
   min-height: calc(100vh - 73px);
 }
