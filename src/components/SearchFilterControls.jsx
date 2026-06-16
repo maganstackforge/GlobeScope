@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
-import countriesBackup from '../data/countries-v3.json';
+const res = await import('../data/countries-v3.json');
+const countries = res.default;
+
 import CountryCard from './CountryCard';
 import { IoSearch } from 'react-icons/io5';
 
@@ -21,7 +23,7 @@ const SearchFilterControls = () => {
   const filteredCountries = useMemo(() => {
     console.log('Filtering countries array based on search or region change...');
 
-    return countriesBackup.filter((country) => {
+    return countries.filter((country) => {
       const matchesSearch = country.name?.common.toLowerCase().includes(searchQuery);
 
       const matchesRegion = region ? country.region === region : true;

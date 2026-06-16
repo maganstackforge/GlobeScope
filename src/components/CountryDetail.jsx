@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
+import { IoArrowBack } from 'react-icons/io5';
+import { IoArrowBackOutline } from 'react-icons/io5';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import CountryDetailShimmer from './CountryDetailShimmer';
 import { useTheme } from '../Contexts/ThemeContext';
-import countries from '../data/countries-v3.json';
+const res = await import('../data/countries-v3.json');
+const countries = res.default;
 import { Helmet } from 'react-helmet-async';
 
 export default function CountryDetail() {
@@ -121,11 +124,12 @@ export default function CountryDetail() {
       <main className={`mx-auto w-full max-w-7xl ${isDark ? 'dark' : ''}`}>
         <div className='mx-auto max-w-7xl text-lg sm:p-10'>
           <button
-            className='ml-[1.5%] cursor-pointer rounded-lg bg-[var(--elements-color)] px-6 py-2 shadow-xl transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-md hover:outline hover:outline-gray-400'
+            className='ml-[1.5%] flex cursor-pointer items-center justify-center rounded-lg bg-[var(--elements-color)] px-4 py-2 shadow-xl transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-md hover:outline hover:outline-gray-400'
             onClick={() => navigate(-1)}
             aria-label='Go back'
           >
-            <i className='fa-solid fa-arrow-left-long'></i>&nbsp;&nbsp;Back
+            <IoArrowBackOutline />
+            &nbsp;&nbsp;Back
           </button>
 
           {loading ? (
