@@ -11,8 +11,8 @@ const CountryCard = ({ name, flag, population, region, capital, data, index }) =
       <div className='h-40 w-full overflow-hidden'>
         <img
           className='h-full w-full rounded-md object-cover'
-          width='400'
-          height='250'
+          width='300'
+          height='180'
           alt={`${name} Flag`}
           decoding='async'
           src={flag}

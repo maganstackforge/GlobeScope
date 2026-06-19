@@ -15,21 +15,31 @@ const SearchFilterControls = () => {
   // 2. Debounce effect: Delays updating the global searchQuery state until the user stops typing for 300ms
   useEffect(() => {
     const timer = setTimeout(() => {
-      setSearchQuery(localInput.toLowerCase());
+      setSearchQuery(localInput.trim().toLowerCase());
     }, 300);
     return () => clearTimeout(timer);
   }, [localInput]);
+
+  //  PRECOMPUTE lowercase once (BIG PERFORMANCE FIX)
+  const normalizedCountries = useMemo(() => {
+    return countries.map((country) => ({
+      ...country,
+      _name: country.name?.common?.toLowerCase() || '',
+    }));
+  }, [countries]);
+
   // 3. Performance Optimization: Memoizes the filtering process to prevent redundant array loops on unrelated re-renders
 
   const filteredCountries = useMemo(() => {
-    return countries.filter((country) => {
-      const matchesSearch = country.name?.common?.toLowerCase().includes(searchQuery);
+    if (!normalizedCountries.length) return [];
+    return normalizedCountries.filter((country) => {
+      const matchesSearch = !searchQuery || country._name.includes(searchQuery);
 
       const matchesRegion = region ? country.region === region : true;
 
       return matchesSearch && matchesRegion;
     });
-  }, [countries, searchQuery, region]); // Triggers calculation only when searchQuery or region changes
+  }, [normalizedCountries, searchQuery, region]); // Triggers calculation only when searchQuery or region changes
   return (
     <div className='mx-auto w-full max-w-7xl'>
       {/* --- Search and Filter Controls UI --- */}
@@ -63,22 +73,22 @@ const SearchFilterControls = () => {
 
       {/* --- Responsive Responsive Grid Layout for Country Cards --- */}
       <div className='m-4 mx-auto grid w-full max-w-7xl [grid-template-columns:repeat(auto-fill,minmax(250px,1fr))] justify-items-center gap-8 p-4'>
-        {loading ? (
-          <CountriesListShimmer />
-        ) : (
-          filteredCountries.map((country, index) => (
-            <CountryCard
-              key={country.cca3 || country.name?.common || index}
-              name={country.name?.common ?? 'Unknown'}
-              flag={country.flags?.svg ?? ''}
-              population={country.population ?? 0}
-              region={country.region ?? ''}
-              capital={typeof country.capital?.[0] === 'string' ? country.capital[0] : 'No Capital'}
-              index={index}
-              data={country}
-            />
-          ))
-        )}
+        {/* Show shimmer only when truly empty AND loading */}
+        {loading && filteredCountries.length === 0 && <CountriesListShimmer />}
+
+        {/* Render actual content immediately when available */}
+        {filteredCountries.map((country, index) => (
+          <CountryCard
+            key={country.cca3 || country.name?.common || index}
+            name={country.name?.common ?? 'Unknown'}
+            flag={country.flags?.svg ?? ''}
+            population={country.population ?? 0}
+            region={country.region ?? ''}
+            capital={country.capital?.[0] ?? 'No Capital'}
+            index={index}
+            data={country}
+          />
+        ))}
       </div>
     </div>
   );

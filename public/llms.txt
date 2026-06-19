@@ -1,31 +1,9 @@
-# GlobeScope
+# GlobeScope - REST Countries Explorer
 
-This website (globescope.netlify.app) is a web application that provides country information, search, and exploration features.
+## Important Pages
+- https://globescope.netlify.app/
+- https://globescope.netlify.app/countries
+- https://globescope.netlify.app/about
 
-## Purpose
-GlobeScope helps users explore countries, flags, population, currencies, and other geographical data in an interactive UI.
-
-## Features
-- Country search and filter
-- Detailed country information pages
-- Responsive UI for mobile and desktop
-- API-based or local dataset support
-
-## Technology Stack
-- HTML, CSS, JavaScript
-- React (if applicable)
-- REST Countries API / local JSON data
-- React Router for navigation
-
-## Allowed Usage
-- Public content indexing
-- AI summarization of country data pages
-- Educational use of geography-related content
-
-## Disallowed Usage
-- Personal or sensitive data scraping
-- Abuse of API endpoints
-- Unauthorized data harvesting
-
-## Notes
-This file is intended to guide LLM crawlers about how to interpret and use this website content responsibly.
+## Description
+This website is a REST Countries Explorer built with React.
