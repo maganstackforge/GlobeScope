@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="shortcut icon" href="GlobeScope.webp" type="image/webp" />
-    <!-- preload ONLY ONE font  -->
+    <!-- preload font  -->
     <link
       rel="preload"
       href="/fonts/Nunito-Regular.woff2"
@@ -13,7 +13,12 @@
       type="font/woff2"
       crossorigin="anonymous"
     />
+    <link rel="preload" href="/fonts/Nunito-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
 
+    <!-- preload flags  -->
+    <link rel="preconnect" as="image" href="https://flagcdn.com" fetchpriority="high" />
+    <link rel="dns-prefetch" as="image" href="https://flagcdn.com" fetchpriority="high" />
+    <link rel="preload" as="image" href="https://flagcdn.com/af.svg" fetchpriority="high" />
     <title>Countries API</title>
 
     <script type="module" src="/src/main.jsx"></script>

@@ -1,4 +1,4 @@
-import { useTheme } from '../Contexts/ThemeContext';
+import { useTheme } from '../Contexts/Theme/useTheme';
 export default function Header() {
   const { isDark, setIsDark } = useTheme();
 

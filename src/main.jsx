@@ -1,32 +1,24 @@
 import React, { Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import { CountriesDataProvider } from './Contexts/countries/CountriesDataProvider';
 import { HelmetProvider } from 'react-helmet-async';
 
 import './index.css';
 
 import App from './App';
 import Home from './components/Home';
-import { CountriesProvider } from './Contexts/CountriesContext';
+import PageLoader from './components/PageLoader';
 
 const CountryDetail = lazy(() => import('./components/CountryDetail'));
 const Error = lazy(() => import('./components/Error'));
-
-const PageLoader = () => (
-  <div role='status' aria-live='polite' style={{ padding: '1rem' }}>
-    Loading...
-  </div>
-);
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: (
-      <Suspense fallback={<PageLoader />}>
-        <Error />
-      </Suspense>
-    ),
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -34,11 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: ':country',
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <CountryDetail />
-          </Suspense>
-        ),
+        element: <CountryDetail />,
       },
     ],
   },
@@ -47,9 +35,11 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
-      <CountriesProvider>
-        <RouterProvider router={router} />
-      </CountriesProvider>
+      <CountriesDataProvider>
+        <Suspense fallback={<PageLoader />}>
+          <RouterProvider router={router} />
+        </Suspense>
+      </CountriesDataProvider>
     </HelmetProvider>
   </React.StrictMode>
 );

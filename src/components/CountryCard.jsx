@@ -1,7 +1,8 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 const CountryCard = ({ name, flag, population, region, capital, data, index }) => {
+  const isAboveFold = index < 6;
   return (
     <Link
       className='inline-block w-full overflow-hidden rounded-lg bg-[var(--elements-color)] pb-8 shadow-lg transition-transform duration-200 ease-in-out hover:scale-105 hover:shadow-[(--hover-color)] hover:outline hover:outline-[var(--border-color)]'
@@ -14,12 +15,10 @@ const CountryCard = ({ name, flag, population, region, capital, data, index }) =
           width='300'
           height='180'
           alt={`${name} Flag`}
-          decoding='async'
           src={flag}
-          // Optimizing LCP: Eagerly load the first 4 visible flags, lazy load the rest
-          loading={index < 10 ? 'eager' : 'lazy'}
-          // Prioritize critical above-the-fold images for faster initial paint
-          fetchPriority={index < 10 ? 'high' : 'low'}
+          loading={isAboveFold ? 'eager' : 'lazy'}
+          fetchPriority={isAboveFold ? 'high' : 'low'}
+          decoding='async'
         />
       </div>
       <div className='p-4'>
@@ -40,4 +39,4 @@ const CountryCard = ({ name, flag, population, region, capital, data, index }) =
     </Link>
   );
 };
-export default memo(CountryCard);
+export default React.memo(CountryCard);

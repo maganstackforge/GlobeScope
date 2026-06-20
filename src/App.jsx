@@ -1,4 +1,4 @@
-import { ThemeProvider } from './Contexts/ThemeContext';
+import { ThemeProvider } from './Contexts/Theme/ThemeProvider';
 import Header from './components/Header';
 import { Outlet } from 'react-router-dom';
 import Footer from './components/Footer';

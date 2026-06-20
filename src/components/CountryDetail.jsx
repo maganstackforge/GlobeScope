@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
-import { IoArrowBack } from 'react-icons/io5';
 import { IoArrowBackOutline } from 'react-icons/io5';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import CountryDetailShimmer from './CountryDetailShimmer';
-import { useTheme } from '../Contexts/ThemeContext';
-import { useCountries } from '../Contexts/CountriesContext';
+import { useTheme } from '../Contexts/Theme/useTheme';
+import { useCountriesData } from '../Contexts/countries/useCountriesData';
 
 import { Helmet } from 'react-helmet-async';
 
 export default function CountryDetail() {
-  const { countries, loading } = useCountries();
+  const { countries, loading } = useCountriesData();
   const { isDark } = useTheme();
   const navigate = useNavigate();
   const params = useParams();
@@ -19,8 +18,10 @@ export default function CountryDetail() {
   const [countryData, setCountryData] = useState(null);
   const [notFound, setNotFound] = useState(false);
 
-  function updateCountryData(data) {
-    setCountryData({
+  useEffect(() => {
+    if (!countries.length) return;
+
+    const buildCountryData = (data) => ({
       name: data.name.common || data.name,
       nativeName: Object.values(data.name.nativeName || {})[0]?.common,
       population: data.population,
@@ -33,18 +34,14 @@ export default function CountryDetail() {
         .map((currency) => currency.name)
         .join(', '),
       language: Object.values(data.languages || {}).join(', '),
-
       borders: (data.borders || []).map((code) => {
         const country = countries.find((c) => c.cca3 === code);
         return country?.name?.common || code;
       }),
     });
-  }
-  useEffect(() => {
-    if (!countries.length) return;
 
     if (state) {
-      updateCountryData(state);
+      setCountryData(buildCountryData(state));
       setNotFound(false);
       return;
     }
@@ -54,19 +51,23 @@ export default function CountryDetail() {
     );
 
     if (country) {
-      updateCountryData(country);
+      setCountryData(buildCountryData(country));
       setNotFound(false);
     } else {
       setNotFound(true);
     }
   }, [countryName, state, countries]);
 
-  if (loading || !countryData) {
+  if (loading) {
     return <CountryDetailShimmer />;
   }
 
   if (notFound) {
     return <div>Country not found</div>;
+  }
+
+  if (!countryData) {
+    return <CountryDetailShimmer />;
   }
 
   return (

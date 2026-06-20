@@ -1,4 +1,4 @@
-import { useTheme } from '../Contexts/ThemeContext';
+import { useTheme } from '../Contexts/Theme/useTheme';
 // 1. React Router Router se Link ko import kiya
 import { Link } from 'react-router-dom';
 

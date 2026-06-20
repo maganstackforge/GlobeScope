@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { useTheme } from '../Contexts/ThemeContext';
+import { useTheme } from '../Contexts/Theme/useTheme';
 
 // Sirf is ek mix component ko import kijiye
 import SearchFilterControls from './SearchFilterControls';

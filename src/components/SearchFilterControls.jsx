@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import CountriesListShimmer from './CountriesListShimmer';
-import { useCountries } from '../Contexts/CountriesContext';
+import { useCountriesData } from '../Contexts/countries/useCountriesData';
 
 import CountryCard from './CountryCard';
 import { IoSearch } from 'react-icons/io5';
@@ -10,7 +10,7 @@ const SearchFilterControls = () => {
   const [localInput, setLocalInput] = useState('');
   const [region, setRegion] = useState('');
 
-  const { countries, loading } = useCountries();
+  const { countries, loading } = useCountriesData();
 
   // 2. Debounce effect: Delays updating the global searchQuery state until the user stops typing for 300ms
   useEffect(() => {
@@ -20,26 +20,21 @@ const SearchFilterControls = () => {
     return () => clearTimeout(timer);
   }, [localInput]);
 
-  //  PRECOMPUTE lowercase once (BIG PERFORMANCE FIX)
-  const normalizedCountries = useMemo(() => {
-    return countries.map((country) => ({
-      ...country,
-      _name: country.name?.common?.toLowerCase() || '',
-    }));
-  }, [countries]);
-
   // 3. Performance Optimization: Memoizes the filtering process to prevent redundant array loops on unrelated re-renders
 
   const filteredCountries = useMemo(() => {
-    if (!normalizedCountries.length) return [];
-    return normalizedCountries.filter((country) => {
-      const matchesSearch = !searchQuery || country._name.includes(searchQuery);
+    const query = searchQuery.trim().toLowerCase();
 
+    return countries.filter((country) => {
+      const name = country.name?.common?.toLowerCase() || '';
+      const matchesSearch = !query || name.includes(query);
       const matchesRegion = region ? country.region === region : true;
 
       return matchesSearch && matchesRegion;
     });
-  }, [normalizedCountries, searchQuery, region]); // Triggers calculation only when searchQuery or region changes
+  }, [countries, searchQuery, region]); // Triggers calculation only when searchQuery or region changes
+  const visibleCountries = filteredCountries.slice(0, 40);
+
   return (
     <div className='mx-auto w-full max-w-7xl'>
       {/* --- Search and Filter Controls UI --- */}

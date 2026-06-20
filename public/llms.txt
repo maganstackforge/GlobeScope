@@ -1,9 +1,14 @@
-# GlobeScope - REST Countries Explorer
+# Website Title or Project Name
 
-## Important Pages
-- https://globescope.netlify.app/
-- https://globescope.netlify.app/countries
-- https://globescope.netlify.app/about
+> A brief, one or two-sentence description of what this website or project is about. This helps the LLM get instant context.
 
-## Description
-This website is a REST Countries Explorer built with React.
+## Core Resources
+
+- [Home](https://globescope.netlify.app/) - The main landing page.
+- [Documentation](https://globescope.netlify.app/countries) - Full guides and API references.
+
+## Optional Section (e.g., Contact or GitHub)
+
+- 💻 **GitHub Profile:** https://github.com/maganstackforge - Check out my open-source projects and repositories.
+
+- 👤 **LinkedIn:** https://linkedin.com/in/maganstackforge - Connect with me professionally.
