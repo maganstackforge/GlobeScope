@@ -33,7 +33,6 @@ const SearchFilterControls = () => {
       return matchesSearch && matchesRegion;
     });
   }, [countries, searchQuery, region]); // Triggers calculation only when searchQuery or region changes
-  const visibleCountries = filteredCountries.slice(0, 40);
 
   return (
     <div className='mx-auto w-full max-w-7xl'>
